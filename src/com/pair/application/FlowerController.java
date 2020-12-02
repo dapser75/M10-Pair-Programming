@@ -11,12 +11,11 @@ import com.pair.persistence.FlowerShopRepository;
 
 public class FlowerController {	
 	
-	//private FlowerShopRepository flowershoprepository = new FlowerShopRepository();	
 	private FlowerShopController flowershopcontroller = new FlowerShopController();
 
 	public FlowerController() {}
 	
-	//Metode principal del controlador
+	//Mètode principal del controlador
 	public void addFlower() {
 		
 		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops();
@@ -24,9 +23,8 @@ public class FlowerController {
 		//Chequear si s'ha creat alguna floristeria previament.
 		if (flowershoprepository.isEmpty()) JOptionPane.showMessageDialog(null, "No hi cap floristeria creada !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
 		
-		else {
-			
-			String flowershopname = flowershopcontroller.InputFlowerShopName();
+		else {			
+			String flowershopname = flowershopcontroller.inputFlowerShopName();
 			
 			//Chequear que la floristeria existeix
 			if (!flowershopcontroller.checkFlowerShopName(flowershopname)) 
@@ -44,7 +42,7 @@ public class FlowerController {
 					flowershopname="";
 					break;
 				}				
-				}while(colour.isBlank() || colour.isEmpty()); //Chequear que se introdueixi algun caracter
+				}while(colour.isBlank() || colour.isEmpty()); //Chequear que s'introdueixi algun caràcter
 				
 				for (FlowerShop l : flowershoprepository) {
 					if (l.getName().equals(flowershopname)){
@@ -65,5 +63,5 @@ public class FlowerController {
 				
 			}				
 		}			
-		}		
-	}
+	}	
+}

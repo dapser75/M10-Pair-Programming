@@ -7,53 +7,39 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.pair.application.FlowerController;
-import com.pair.application.FlowerShopController; //////////////
+import com.pair.application.FlowerShopController;
 import com.pair.application.TreeController;
+import com.pair.application.DecorationController;
+import com.pair.application.FlowerController;
 
 
 public class FlowerSheet extends JPanel {
 	
 	private JPanel mySheet2;
 	private JButton screen;
-	//private boolean principio;
-	//private double resultado;
-	//private String ultimaOperacion;
 	
 	private FlowerShopController flowershopcontroller = new FlowerShopController();
 	private TreeController treeController = new TreeController();
 	private FlowerController flowerController = new FlowerController();
+	private DecorationController decorationController = new DecorationController();
 	
 	public FlowerSheet () {
 	
-		//principio = true;
 		setLayout(new BorderLayout ());
 		screen = new JButton("");
 		screen.setEnabled(false);
-		//setBounds(500,300,750,200);
 		add(screen,BorderLayout.NORTH); 
 		mySheet2 = new JPanel();
-
 		
 		ActionListener insertar = new InstertOrder ();
-
-		//mySheet2.setLayout(new GridLayout(4,4));
-
-		//ActionListener orden = new AccionOrden();
 		
 		ponerBoton("Crear Floristeria", insertar);
 		ponerBoton("Afegir Arbre", insertar);
 		ponerBoton("Afegir Flor", insertar);
-		//ponerBoton("/", orden);
-
-		ponerBoton("Afegir Decoraci�", insertar);
-
+		ponerBoton("Afegir Decoració", insertar);
 		ponerBoton("Stock", insertar);
-		//ponerBoton("*", orden);
-						
+								
 		add(mySheet2, BorderLayout.SOUTH);
-		
-		//ultimaOperacion = "=";
 	}
  
 	private void ponerBoton(String tittle, ActionListener listener) {
@@ -65,21 +51,21 @@ public class FlowerSheet extends JPanel {
 	
 	private class InstertOrder implements ActionListener {
 
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			String entrada = e.getActionCommand();	
-			
 			screen.setText(entrada);			
-		//		screen.setText(screen.getText() + entrada);
-			
-			//@dapser75 REVISAR el metodo de llamada
+					
 			if (entrada.equals("Crear Floristeria")) flowershopcontroller.NewFlowerShop();
 			if (entrada.equals("Afegir Arbre")) treeController.addTree();
 			if (entrada.equals("Afegir Flor")) flowerController.addFlower();
-			if (entrada.equals("Stock")) flowerController.toString();	
-
+			if (entrada.equals("Afegir Decoració"))decorationController.addDeco();
+			if (entrada.equals("Stock")) {
+				String output="";
+				output = flowershopcontroller.stock();
+				System.out.println(output);
+			}
 		}	
 	}
 }

@@ -5,7 +5,6 @@ public abstract class FlowerShopObject {
 
 	private static int COUNTER_OBJECTS = 1;
 	
-	//Pendet control excepciosn
 	public FlowerShopObject (double price) {
 		
 		this.price=price;

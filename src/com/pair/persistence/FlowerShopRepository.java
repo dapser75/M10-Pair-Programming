@@ -17,7 +17,7 @@ public class FlowerShopRepository {
 	
 	public FlowerShopRepository () { }
 	
-	//Métode per retornar tot el repositori
+	//MÃ¨tode per retornar tot el repositori
 	public static List<FlowerShop> getAllFlowerShops(){
 		return new ArrayList<>(flowershoplist);
 	}

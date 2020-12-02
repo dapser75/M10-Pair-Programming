@@ -7,57 +7,51 @@ import javax.swing.JOptionPane;
 import com.pair.domain.FlowerShop;
 import com.pair.persistence.FlowerShopRepository;
 
-
 public class FlowerShopController {
 
 	private FlowerShopRepository flowershoprepository = new FlowerShopRepository();
-
-	public FlowerShopRepository repository; 	
+	private FlowerShopRepository repository; 	
 	
-	public FlowerShopController(FlowerShopRepository repository){  // constructor
+	public FlowerShopController(FlowerShopRepository repository){ 
 		
-		this.repository = repository;
-		
+		this.repository = repository;		
 	}
 	
 	public FlowerShopController() {}
 
-	//MÈtode per donar d'alta una nova floristeria
+	//M√®tode per donar d'alta una nova floristeria
 	public void NewFlowerShop () {
 		String flowershopname="";
 		boolean existsflowershop=false;
 		
-			flowershopname=InputFlowerShopName(); //Llamada al metode per introduir el nom de la floristeria
+			flowershopname=inputFlowerShopName(); //Crida al metode per introduir el nom de la floristeria
 			if (flowershopname != "") {
 				existsflowershop = checkFlowerShopName(flowershopname);
 				
 				if (!existsflowershop)  FlowerFhopCreated(flowershopname);
 				else JOptionPane.showMessageDialog(null, "Floristeria existent !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
-					
-			
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "OperaciÛ cancel∑lada", "Alerta", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Operaci√≥ cancel¬∑lada", "Alerta", JOptionPane.ERROR_MESSAGE);
 				
 			}		
-	}//end metode
+	}
 
-
-	//MÈtode per afegir al una floristeria al repository
+	//M√®tode per afegir una floristeria al repository
 	private void FlowerFhopCreated(String flowershopname) {
 		try {
 			FlowerShop flowershop = new FlowerShop (flowershopname);
 			flowershoprepository.add(flowershop);
 
 		}catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "OperaciÛ cancel∑lada, no s'ha pogut crear la floristeria", "Alerta", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Operaci√≥ cancel¬∑lada, no s'ha pogut crear la floristeria", "Alerta", JOptionPane.ERROR_MESSAGE);
 
 		}		
 	}
 
-	//MÈtode per chequear si una floristeria ja est‡ creada
+	//M√®tode per chequear si una floristeria ja est√° creada
 	public boolean checkFlowerShopName(String flowershopname) {
-		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops(); //Chequear el casting
+		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops();
 		boolean checkflowershopname=false;
 		
 		if (flowershoprepository.size()>0) {
@@ -65,16 +59,16 @@ public class FlowerShopController {
 				if (l.getName().equals(flowershopname)){
 					checkflowershopname=true;
 					break;
-				}
-				
-			}//end for
+				}				
+			}
 		}
 		return checkflowershopname;	
 	}
 	
-	//MÈtode per entrar el nom de la floristeria Cambiar a entrada en modo gr·fico
-	public String InputFlowerShopName() {
+	//M√®tode per entrar el nom de la floristeria
+	public String inputFlowerShopName() {
 		String flowershopname="";
+		
 		do {
 			flowershopname=	JOptionPane.showInputDialog(null,"Introdueix el nom de la floristeria:","ENTRADA",JOptionPane.QUESTION_MESSAGE);	
 			if (flowershopname != null)  flowershopname=flowershopname.trim().toUpperCase();
@@ -82,29 +76,41 @@ public class FlowerShopController {
 				flowershopname="";
 				break;
 			}
-		}while(flowershopname.isBlank() || flowershopname.isEmpty()); //Chequear que se introdueixi algun caracter
+		}while(flowershopname.isBlank() || flowershopname.isEmpty()); //Chequear que s'introdueixi algun car√†cter
 
 		return flowershopname;
 	}
 	
-	/*@Override
-	public String toString () {
+	public String stock () {
 		
+		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops();
 		StringBuilder output = new StringBuilder();
-		output.append("Floristeria: ");
-		output.append(repository.getName());
-		output.append("P:");
-		output.append(getRocket().getRocketCurrentPower() +"\n");
 		
-		if (getTargetPower() == getRocket().getTotalCurrentPower()) {
+		if (flowershoprepository.size()>0) {
 			
-			output.append(" ---> El coet: " + getRocket().getCode() + " ha arribat a la potËncia objectiu." + "\n");
-		
-		} else if ((getTargetPower() > getRocket().getTotalCurrentPower()) && ( getTargetPower() > getRocket().getMaxTotPowerR()) && (getRocket().getTotalCurrentPower() ==  getRocket().getMaxTotPowerR())) {
-			
-			output.append(" ---> El coet: " + getRocket().getCode() + " ha arribat a la potËncia m‡xima, i no podr· assolir l'objectiu." + "\n");
-		}
-		
+			String flowershopname=inputFlowerShopName(); //Crida al m√®tode per introdu√Ør el nom de la floristeria
+			boolean existsflowershop=false;
+			if (flowershopname != "") {
+				existsflowershop = checkFlowerShopName(flowershopname);
+			}
+				
+			if (existsflowershop) {
+				
+				for (FlowerShop l : flowershoprepository) {
+					if (l.getName().equals(flowershopname)) {
+						output.append("Floristeria: " + l.getName() + "." + "\n");
+						output.append("ARBRES: " +  l.getTreesString() + "." + "\n");
+						output.append("FLORS: " + l.getFlowersString() + "." + "\n");
+						output.append("DECORACI√ì: " + l.getDecorationString() + "." + "\n");
+					}					
+				}
+				
+			} else {				
+				JOptionPane.showMessageDialog(null, "La floristeria que demanes no existeix !!", "Alerta", JOptionPane.ERROR_MESSAGE);
+			}
+		} else {			
+			JOptionPane.showMessageDialog(null, "No hi ha cap floristeria creada !!", "Alerta", JOptionPane.ERROR_MESSAGE);
+		}				
 		return output.toString();
-	}*/		
+	}	
 }

@@ -11,15 +11,11 @@ import com.pair.persistence.FlowerShopRepository;
 
 public class TreeController {	
 	
-	//private FlowerShopRepository flowershoprepository = new FlowerShopRepository();
-	
-	//private List <FlowerShop> flowershoplist= FlowerShopRepository.getAllFlowerShops();
-	
 	private FlowerShopController flowershopcontroller = new FlowerShopController();
 
 	public TreeController() {}
 	
-	//Metode principal del controlador
+	//Mètode principal del controlador
 	public void addTree() {
 		
 		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops();
@@ -29,7 +25,7 @@ public class TreeController {
 		
 		else {
 			
-			String flowershopname = flowershopcontroller.InputFlowerShopName();
+			String flowershopname = flowershopcontroller.inputFlowerShopName();
 			
 			//Chequear que la floristeria existeix
 			if (!flowershopcontroller.checkFlowerShopName(flowershopname)) 
@@ -40,7 +36,7 @@ public class TreeController {
 				double price = 0;
 					
 				//do {
-				height = Integer.parseInt(JOptionPane.showInputDialog(null,"Introdueix l'al�ada de l'arbre:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
+				height = Integer.parseInt(JOptionPane.showInputDialog(null,"Introdueix l'alçada de l'arbre:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
 				price = Double.parseDouble(JOptionPane.showInputDialog(null,"Introdueix el preu de l'arbre:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
 						//if (height != null)  flowershopname=flowershopname.trim().toUpperCase();
 						//else {
@@ -62,11 +58,9 @@ public class TreeController {
 							l.getTrees().add(tree);
 						}
 						break;
-					}
-					
-				}
-				
+					}					
+				}				
 			}				
 		}			
-		}		
-	}
+	}		
+}
