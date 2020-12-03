@@ -83,6 +83,15 @@ public class FlowerShopController {
 	
 	public String stock () {
 		
+		/***************************/
+	 
+	//	WindoOutput window = new WindoOutput();
+	//	window.frmStocks.setVisible(true);
+		 
+		 /*******************/
+		
+		
+		
 		List<FlowerShop> flowershoprepository = FlowerShopRepository.getAllFlowerShops();
 		StringBuilder output = new StringBuilder();
 		
@@ -99,12 +108,12 @@ public class FlowerShopController {
 				for (FlowerShop l : flowershoprepository) {
 					if (l.getName().equals(flowershopname)) {
 						output.append("Floristeria: " + l.getName() + "." + "\n");
-						if (l.getTrees() != null) output.append("ARBRES: " +  l.getTreesString() + "." + "\n");
-						else output.append("ARBRES: Sense Stock.\n");
-						if (l.getFlowers() != null) output.append("FLORS: " + l.getFlowersString() + "." + "\n");
-						else output.append("FLORS: Sense Stock.\n");
-						if (l.getDecoration() != null) output.append("DECORACIÃ“: " + l.getDecorationString() + "." + "\n");
-						else output.append("DECORACIÓ: Sense Stock.\n");
+						if (l.getTrees() != null) output.append("\tARBRES: " +  l.getTreesString() + "." + "\n");
+						else output.append("\tARBRES: Sense Stock.\n");
+						if (l.getFlowers() != null) output.append("\tFLORS: " + l.getFlowersString() + "." + "\n");
+						else output.append("\tFLORS: Sense Stock.\n");
+						if (l.getDecoration() != null) output.append("\tDECORACIÃ“: " + l.getDecorationString() + "." + "\n");
+						else output.append("\tDECORACIÓ: Sense Stock.\n");
 					}					
 				}
 				
