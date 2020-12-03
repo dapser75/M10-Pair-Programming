@@ -99,9 +99,12 @@ public class FlowerShopController {
 				for (FlowerShop l : flowershoprepository) {
 					if (l.getName().equals(flowershopname)) {
 						output.append("Floristeria: " + l.getName() + "." + "\n");
-						output.append("ARBRES: " +  l.getTreesString() + "." + "\n");
-						output.append("FLORS: " + l.getFlowersString() + "." + "\n");
-						output.append("DECORACIÓ: " + l.getDecorationString() + "." + "\n");
+						if (l.getTrees() != null) output.append("ARBRES: " +  l.getTreesString() + "." + "\n");
+						else output.append("ARBRES: Sense Stock.\n");
+						if (l.getFlowers() != null) output.append("FLORS: " + l.getFlowersString() + "." + "\n");
+						else output.append("FLORS: Sense Stock.\n");
+						if (l.getDecoration() != null) output.append("DECORACIÓ: " + l.getDecorationString() + "." + "\n");
+						else output.append("DECORACI�: Sense Stock.\n");
 					}					
 				}
 				
