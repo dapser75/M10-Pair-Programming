@@ -112,5 +112,26 @@ public class FlowerShopController {
 			JOptionPane.showMessageDialog(null, "No hi ha cap floristeria creada !!", "Alerta", JOptionPane.ERROR_MESSAGE);
 		}				
 		return output.toString();
-	}	
+	}
+	
+	
+	
+	//Métode per introuduir els preus dels articles
+	public double inputPreu() {
+		double price=-1;
+		do {
+			try {
+				price = Double.parseDouble(JOptionPane.showInputDialog(null,"Introdueix el preu de l'arbre:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
+				if (price <= 0) JOptionPane.showMessageDialog(null, "El preu te que ser major que 0 !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
+			
+			}catch(Exception e) {
+
+				JOptionPane.showMessageDialog(null, "El preu te que ser un numero!!!", "Alerta", JOptionPane.ERROR_MESSAGE);
+				price=-1;
+			}
+			
+		}while (price <= 0);
+		
+		return price;
+	}
 }

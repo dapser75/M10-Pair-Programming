@@ -36,49 +36,33 @@ public class TreeController {
 				double price = 0;
 					
 				height = inputheight();
-				price = inputpreu();
-					
-				// @dapser75
-				//Verificar este metodo para ver si se puede reducir
-				for (FlowerShop l : flowershoprepository) {
-					if (l.getName().equals(flowershopname)){
-						Tree tree = new Tree (height,price);
-						
-						if (l.getTrees()== null) {
-							ArrayList<Tree> trees = new ArrayList<Tree>();
-							trees.add(tree);
-							l.setTrees(trees);
-						}
-						else {
-							l.getTrees().add(tree);
-						}
-						break;
-					}					
-				}				
+				price = flowershopcontroller.inputPreu();
+				saveTree(height,price,flowershopname,flowershoprepository);
 			}				
 		}			
 	}
 
-	//Métode per introduir el preu
-	private double inputpreu() {
-		double price=-1;
-		do {
-			try {
-				price = Double.parseDouble(JOptionPane.showInputDialog(null,"Introdueix el preu de l'arbre:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
-				if (price <= 0) JOptionPane.showMessageDialog(null, "El preu te que ser major que 0 !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
-			
-			}catch(Exception e) {
-
-				JOptionPane.showMessageDialog(null, "El preu te que ser un numero!!!", "Alerta", JOptionPane.ERROR_MESSAGE);
-				price=-1;
-			}
-			
-		}while (price <= 0);
+	//Metode per guardar l'arbre.
+	private void saveTree(int height, double price, String flowershopname, List<FlowerShop> flowershoprepository) {
+		for (FlowerShop l : flowershoprepository) {
+			if (l.getName().equals(flowershopname)){
+				Tree tree = new Tree (height,price);
+				
+				if (l.getTrees()== null) {
+					ArrayList<Tree> trees = new ArrayList<Tree>();
+					trees.add(tree);
+					l.setTrees(trees);
+				}
+				else {
+					l.getTrees().add(tree);
+				}
+				break;
+			}					
+		}				
 		
-		return price;
 	}
 
-	//Métode per introducir l'alçada
+	//Métode per introduir l'alçada
 	private int inputheight() {
 		int height=-1;
 		do {
