@@ -30,20 +30,10 @@ public class FlowerController {
 			if (!flowershopcontroller.checkFlowerShopName(flowershopname)) 
 				JOptionPane.showMessageDialog(null, "Floristeria inexistent !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
 			else {
+								
+				String colour = inputcolour();
+				double price = inputprice();
 					
-				String colour="";
-				double price = 0;
-					
-				do {
-				colour = JOptionPane.showInputDialog(null,"Introdueix el color de la flor:","ENTRADA",JOptionPane.QUESTION_MESSAGE);
-				price = Double.parseDouble(JOptionPane.showInputDialog(null,"Introdueix el preu de la flor:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
-				if (colour != null)  flowershopname=flowershopname.trim().toUpperCase();
-				else {
-					flowershopname="";
-					break;
-				}				
-				}while(colour.isBlank() || colour.isEmpty()); //Chequear que s'introdueixi algun car√†cter
-				
 				for (FlowerShop l : flowershoprepository) {
 					if (l.getName().equals(flowershopname)){
 						Flower flower = new Flower (colour,price);
@@ -63,5 +53,42 @@ public class FlowerController {
 				
 			}				
 		}			
-	}	
+	}
+	
+	//MÈtode per controlar l'entrada del color
+	private String inputcolour() {
+		String colour="";
+		do {
+			colour = JOptionPane.showInputDialog(null,"Introdueix el color de la flor:","ENTRADA",JOptionPane.QUESTION_MESSAGE);
+			
+			if (colour.isBlank() || colour.isEmpty()) JOptionPane.showMessageDialog(null, "El color no pot esgtar buit !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
+			
+			
+		}while(colour.isBlank() || colour.isEmpty());
+		colour=colour.trim().toUpperCase();
+		return colour;
+	}// end metode
+
+	//MÈtode per introudir el color
+	
+	
+	
+	//MÈtode per introudir el preu
+	private double inputprice() {
+		double price=-1;
+		do {
+			try {
+				price = Double.parseDouble(JOptionPane.showInputDialog(null,"Introdueix el preu de la flor:","ENTRADA",JOptionPane.QUESTION_MESSAGE));
+				if (price <= 0) JOptionPane.showMessageDialog(null, "El preu te que ser major que 0 !!!", "Alerta", JOptionPane.ERROR_MESSAGE);
+			
+			}catch(Exception e) {
+
+				JOptionPane.showMessageDialog(null, "El preu te que ser un numero!!!", "Alerta", JOptionPane.ERROR_MESSAGE);
+				price=-1;
+			}
+			
+		}while (price <= 0);
+		
+		return price;
+	}	//end metode
 }
