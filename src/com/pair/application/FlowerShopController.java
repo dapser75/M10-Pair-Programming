@@ -81,12 +81,14 @@ public class FlowerShopController {
 		return flowershopname;
 	}
 	
+	
+	//Métode per treure l'estoc d'una floristeria en concret
 	public String stock () {
 		
 		/***************************/
 	 
-	//	WindoOutput window = new WindoOutput();
-	//	window.frmStocks.setVisible(true);
+		WindoOutput window = new WindoOutput();
+		window.frmStocks.setVisible(true);
 		 
 		 /*******************/
 		
@@ -112,7 +114,7 @@ public class FlowerShopController {
 						else output.append("\tARBRES: Sense Stock.\n");
 						if (l.getFlowers() != null) output.append("\tFLORS: " + l.getFlowersString() + "." + "\n");
 						else output.append("\tFLORS: Sense Stock.\n");
-						if (l.getDecoration() != null) output.append("\tDECORACIÃ“: " + l.getDecorationString() + "." + "\n");
+						if (l.getDecoration() != null) output.append("\tDECORACIÓ: " + l.getDecorationString() + "." + "\n");
 						else output.append("\tDECORACIÓ: Sense Stock.\n");
 					}					
 				}

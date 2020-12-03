@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import com.pair.domain.FlowerShop;
 import com.pair.persistence.FlowerShopRepository;
@@ -96,12 +97,20 @@ public class WindoOutput {
 			String flowershopname = (String) flowershopcombobox.getSelectedItem();
 				System.out.println(flowershopname);
 			/********************************************************************************/
-			for (FlowerShop l : flowershoprepository) {
+				String datos[] = new String[2];
+				for (FlowerShop l : flowershoprepository) {
 				if (l.getName().equals(flowershopname)){	
 					for (int i= 0; i< l.getTrees().size();i++) {
-						System.out.println(l.getTrees().get(i));
-					//	modelo.addRow(l.getTrees().get(i));
+						System.out.println(l.getTrees().get(i).getHeight()+ "  " + l.getTrees().get(i).getPrice());
+						datos[0]=Integer.toString(l.getTrees().get(i).getHeight());
+						datos[1]= Double.toString(l.getTrees().get(i).getPrice());
+						modelo.addRow(datos);
+						//	modelo.addRow(l.getTrees().get(i));
 					}
+					TableColumn column1=null;
+					column1 = treetable.getColumnModel().getColumn(0);
+					TableColumn column2=null;
+					column2 = treetable.getColumnModel().getColumn(1);
 				}
 			}//end for
 				
